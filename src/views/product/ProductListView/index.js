@@ -12,6 +12,7 @@ import ProductCard from './ProductCard';
 
 import { connect } from 'react-redux';
 import { productsFetchData, addProducts } from '../../../redux/_actions/actions-products';
+import { categoriesFetchData } from '../../../redux/_actions/action-categories';
 
 const styles = theme => {
   return ({
@@ -36,6 +37,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
       fetchData: (url) => dispatch(productsFetchData(url)),
+      catFetchDate: (url) => dispatch(categoriesFetchData(url)),
       addProducts: (url, product) => dispatch(addProducts(url, product)),
   };
 };
@@ -44,6 +46,7 @@ class ProductList extends Component {
 
   componentWillMount() {
     this.props.fetchData('https://snscz-api.herokuapp.com/products');
+    this.props.catFetchDate('https://snscz-api.herokuapp.com/category');
   }
 
   render() {

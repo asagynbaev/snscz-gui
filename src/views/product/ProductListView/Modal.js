@@ -23,10 +23,12 @@ import { NotificationManager } from 'react-notifications';
 
 import { connect } from 'react-redux';
 import { modalHasChanged } from '../../../redux/_actions/action-modal';
+import { categories } from '../../../redux/_actions/action-categories';
 //import { products } from 'src/redux/_reducers/reducer-products';
 
 const mapStateToProps = (state) => ({
-    modal: state.modalHasChanged
+    modal: state.modalHasChanged,
+    categories: state.categories
   });
   
   const mapDispatchToProps = dispatch =>({
@@ -62,6 +64,7 @@ const DialogContent = withStyles((theme) => ({
             volumeType: 0,
             file: null,
             imageid: 0,
+            categoryName: ''
           };
     }
 
@@ -127,6 +130,7 @@ const DialogContent = withStyles((theme) => ({
     }
 
     render() {
+      console.log('products is: ', this.props.categories);
         return (
             <div>
               <Dialog onClose={this.toggle} aria-labelledby="customized-dialog-title" open={this.props.modal}>
@@ -165,6 +169,22 @@ const DialogContent = withStyles((theme) => ({
                                 value={this.state.productName}
                                 variant="outlined"
                             />
+                            <FormControl margin="normal" fullWidth variant="outlined">
+                              <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+                              <Select
+                                labelId="demo-mutiple-name-label"
+                                id="demo-mutiple-name"
+                                value={this.state.categoryName}
+                                onChange={this.handleChange}
+                                inputProps={{ 'aria-label': 'category' }}
+                              >
+                                {this.props.categories.map((cat) => (
+                                  <MenuItem key={cat.id} value={cat.categoryName}>
+                                    {cat.categoryName}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            </FormControl>
                             <Grid container spacing={3}>
                                 <Grid item xs={8}>
                                 <TextField
