@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
   const classes = useStyles();
 
   const handleChange = () => {
-    NotificationManager.info('Была нажата кнопка с Аллергенами', 'Информация!', 3000);
+    NotificationManager.info('Allergens button has pressed', 'Information!', 3000);
   };
 
   return (
@@ -62,10 +62,10 @@ const ProductCard = ({ product }) => {
       </CardContent>
       <CardActions>
         <Button size="small" color="primary">
-          Состав
+          Composition
         </Button>
         <Button size="small" color="primary" onClick={handleChange}>
-          Аллергены
+          Allergens
         </Button>
       </CardActions>
     </Card>

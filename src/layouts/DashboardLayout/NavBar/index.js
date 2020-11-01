@@ -34,37 +34,37 @@ const items = [
   {
     href: '/app/dashboard',
     icon: BarChartIcon,
-    title: 'Статистика'
+    title: 'Dashboard'
   },
   {
     href: '/app/customers',
     icon: UsersIcon,
-    title: 'Заказчики'
+    title: 'Customers'
   },
   {
     href: '/app/categories',
     icon: BookIcon,
-    title: 'Категории'
+    title: 'Categories'
   },
   {
     href: '/app/products',
     icon: ShoppingBagIcon,
-    title: 'Продукты'
+    title: 'Products'
   },
   {
     href: '/app/account',
     icon: UserIcon,
-    title: 'Аккаунт'
+    title: 'Account'
   },
   {
     href: '/app/settings',
     icon: SettingsIcon,
-    title: 'Настройки'
+    title: 'Settings'
   },
   {
     href: '/login',
     icon: LockIcon,
-    title: 'Логин'
+    title: 'Sign in'
   },
   {
     href: '/register',

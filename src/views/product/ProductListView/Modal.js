@@ -23,8 +23,6 @@ import { NotificationManager } from 'react-notifications';
 
 import { connect } from 'react-redux';
 import { modalHasChanged } from '../../../redux/_actions/action-modal';
-import { categories } from '../../../redux/_actions/action-categories';
-//import { products } from 'src/redux/_reducers/reducer-products';
 
 const mapStateToProps = (state) => ({
     modal: state.modalHasChanged,
@@ -61,7 +59,7 @@ const DialogContent = withStyles((theme) => ({
             volume: '',
             productCode: '',
             price: '',
-            volumeType: 0,
+            volumeType: '',
             file: null,
             imageid: 0,
             categoryName: ''
@@ -91,7 +89,7 @@ const DialogContent = withStyles((theme) => ({
     }
 
     handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value })
+      this.setState({[e.target.name]: e.target.value })
     }
 
     handleSubmit() {
@@ -101,6 +99,7 @@ const DialogContent = withStyles((theme) => ({
             ProductCode: this.state.productCode,
             Price: parseFloat(this.state.price.replace(",", ".")),
             VolumeTypeId: this.state.volumeType,
+            CategoryId: parseFloat(this.state.categoryName),
             ImageId: parseFloat(this.state.imageid),
         });
         console.log(product);
@@ -130,7 +129,6 @@ const DialogContent = withStyles((theme) => ({
     }
 
     render() {
-      console.log('products is: ', this.props.categories);
         return (
             <div>
               <Dialog onClose={this.toggle} aria-labelledby="customized-dialog-title" open={this.props.modal}>
@@ -155,7 +153,6 @@ const DialogContent = withStyles((theme) => ({
                         {({
                             errors,
                             touched,
-                            values
                         }) => (
                             <form onSubmit={this.handleSubmit}>
                             <TextField
@@ -170,16 +167,17 @@ const DialogContent = withStyles((theme) => ({
                                 variant="outlined"
                             />
                             <FormControl margin="normal" fullWidth variant="outlined">
-                              <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+                              <InputLabel id="demo-mutiple-name-label">Category</InputLabel>
                               <Select
                                 labelId="demo-mutiple-name-label"
                                 id="demo-mutiple-name"
                                 value={this.state.categoryName}
                                 onChange={this.handleChange}
-                                inputProps={{ 'aria-label': 'category' }}
+                                inputProps={{ 'aria-label': 'categoryName' }}
+                                name="categoryName"
                               >
                                 {this.props.categories.map((cat) => (
-                                  <MenuItem key={cat.id} value={cat.categoryName}>
+                                  <MenuItem key={cat.id} value={cat.id}>
                                     {cat.categoryName}
                                   </MenuItem>
                                 ))}
@@ -201,12 +199,13 @@ const DialogContent = withStyles((theme) => ({
                                 </Grid>
                                 <Grid item xs={4}>
                                 <FormControl margin="normal" fullWidth variant="outlined">
-                                    <InputLabel id="demo-simple-select-label">Выберите</InputLabel>
+                                    <InputLabel id="demo-simple-select-label">Volume type</InputLabel>
                                     <Select
                                     labelId="demo-simple-select-label"
-                                    name="volumeType"
                                     value={this.state.volumeType}
                                     onChange={this.handleChange}
+                                    inputProps={{ 'aria-label': 'volumeType' }}
+                                    name="volumeType"
                                     >
                                     <MenuItem value={1}>g</MenuItem>
                                     <MenuItem value={2}>kg</MenuItem>

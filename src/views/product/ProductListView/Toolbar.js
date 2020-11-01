@@ -28,7 +28,6 @@ const mapDispatchToProps = (dispatch) => {
 class Toolbar extends Component {
   constructor(props) {
     super(props);
-    // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -36,17 +35,12 @@ class Toolbar extends Component {
     this.props.changeModal(true);
   }
 
-  _showMessage = (bool) => {
-    
-    console.log('SUKA!!!');
-  }
-
   render() {
     return (
       <div>
         <Box mt={2} display="flex" justifyContent="flex-end">
           <Button color="primary" variant="contained" onClick={this.handleClick}>
-            Добавить продукт
+            ADD PRODUCT
           </Button>
         </Box>
         <Box mt={2}>
@@ -60,7 +54,7 @@ class Toolbar extends Component {
                           <SearchIcon />
                         </SvgIcon>
                       </InputAdornment>
-                    )}} placeholder="Найти продукт" variant="outlined" />
+                    )}} placeholder="Search..." variant="outlined" />
               </Box>
             </CardContent>
           </Card>

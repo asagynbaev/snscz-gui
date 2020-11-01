@@ -51,7 +51,6 @@ class ProductList extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.products)
     return (
       <Page title="Products"  className={classes.root}>
         <Container>
